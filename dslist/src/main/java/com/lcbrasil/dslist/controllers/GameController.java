@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lcbrasil.dslist.dto.GameDTO;
 import com.lcbrasil.dslist.dto.GameMinDTO;
 import com.lcbrasil.dslist.services.GameService;
 
@@ -16,6 +18,12 @@ public class GameController {
 
 	@Autowired   // injetou um service nbo controller
 	private GameService gameService;  
+	
+	@GetMapping(value = "/{id}")  // porque se vc ver no Postman temos a busca por http://localhost:8080/games/1
+	public GameDTO findById(@PathVariable Long id){
+		GameDTO result = gameService.findById(id);
+		return result;	
+	}
 	
 	@GetMapping
 	public List<GameMinDTO> findAll(){

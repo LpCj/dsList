@@ -1,6 +1,7 @@
 package com.lcbrasil.dslist.dto;
 
 import com.lcbrasil.dslist.entities.Game;
+import com.lcbrasil.dslist.projections.GameMinProjection;
 
 public class GameMinDTO {
 	// nao precisa do column aqui pois o DTO nao fica mapeado como o banco de dado
@@ -28,6 +29,14 @@ public class GameMinDTO {
 	}*/
 	
 	//fica assim
+	public GameMinDTO(GameMinProjection projection) {
+		id = projection.getId();
+		title = projection.getTitle();
+		year = projection.getYear();
+		imgUrl = projection.getImgUrl();
+		shortDescription = projection.getShortDescription();// nao precisa dos thi. pois nao tem mais ambiugudade
+	}
+
 	public GameMinDTO(Game entity) {
 		id = entity.getId();
 		title = entity.getTitle();
@@ -35,7 +44,7 @@ public class GameMinDTO {
 		imgUrl = entity.getImgUrl();
 		shortDescription = entity.getShortDescription();// nao precisa dos thi. pois nao tem mais ambiugudade
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
